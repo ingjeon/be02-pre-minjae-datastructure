@@ -44,18 +44,17 @@ public class Queue {
     }
 
     public Integer deQueue() {
-        if (isEmpty()) {
-            System.out.println("큐가 비어있음");
-            return null;
-        }
+        Integer tmp = null;
+        if (isEmpty()) System.out.println("큐가 비어있음");
         else {
-            int tmp = arr[front];
+            tmp = arr[front];
             arr[front] = null;
             front++;
             front = front % 3;
             num--;
-            return tmp;
+
         }
+        return tmp;
     }
 
     public void display() {

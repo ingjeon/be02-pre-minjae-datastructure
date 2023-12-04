@@ -47,22 +47,20 @@ public class Stack {
 
     // pop    top!=-1  꺼내고 비워주고  top--
     public Integer pop() {
+        Integer tmp = null;
         if (!isEmpty()) {
-            int tmp = arr[top];
+            tmp = arr[top];
             arr[top] = null;
             top--;
-            return tmp;
         } else {
             System.out.println("스택이 비어있음");
-            return null;
         }
+        return tmp;
     }
-
     // display
     public void display() {
         System.out.println("top : " + top + " " + Arrays.toString(arr));
     }
-
     public void display1() {
         System.out.print("top : " + top + " ");
         for (int i = 0; i < size; i++) {
