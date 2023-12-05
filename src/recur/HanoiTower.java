@@ -25,16 +25,16 @@ package recur;
  */
 public class HanoiTower {
     int count = 0;
-    public Integer count(Integer num,Integer start,Integer end) {
+    public Integer move(Integer num,Integer start,Integer end) {
         if(num == 1) {
             System.out.println("원반["+num+"] : "+start+"번 기둥 => "+end+"번 기둥");
             count = count + 1;
         }
         else {
-            count(num - 1,start,6-start-end);
+            move(num - 1,start,6-start-end);
             System.out.println("원반["+num+"] : "+start+"번 기둥 => "+end+"번 기둥");
             count = count + 1;
-            count(num - 1,6-start-end,end);
+            move(num - 1,6-start-end,end);
         }
         return count;
     }
