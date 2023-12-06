@@ -7,8 +7,10 @@ public class LinkedListMain {
         test.insertFirst(10);
         test.insertFirst(20);
         test.insertFirst(30);
+        test.display();
         test.insertLast(40);
         test.insertLast(50);
+        test.display();
         test.insertIndex(3,60);
         test.display();
 
@@ -19,6 +21,7 @@ public class LinkedListMain {
         test.display();
 
         System.out.println(test.removeIndex(1));
+//        test.removeIndex2(1);
         test.display();
 
     }

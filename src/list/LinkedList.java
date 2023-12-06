@@ -2,7 +2,7 @@ package list;
 
 public class LinkedList {
     // head는 맨처음 노드 current는 현재 노드
-    Node head;
+    private Node head;
 
     public LinkedList() {
         this.head = null;
@@ -27,12 +27,11 @@ public class LinkedList {
     public void insertFirst(Integer data) {
         Node tmpF = new Node(data, null);
         tmpF.next = head;
-        // => Node tmp = new Node(data,head);
         head = tmpF;
     }
 
     //todo 선생님
-    public void  insertFirst2(Integer data) {
+    public void insertFirst2(Integer data) {
         Node newNode = new Node(data, head);
         head = newNode;
     }
@@ -51,14 +50,15 @@ public class LinkedList {
             }
         }
     }
+
     //Todo 선생님
     public void insertLast2(Integer data) {
-        if(head == null) {
+        if (head == null) {
             this.insertFirst(data);
         } else {
             Node node;
             node = head;
-            while(node.next != null) {
+            while (node.next != null) {
                 node = node.next;
             }
             Node newNode;
@@ -78,16 +78,17 @@ public class LinkedList {
             node.next = tmpI;
         }
     }
+
     //todo 선생님
-    public void  insertIndex2(Integer index, Integer data) {
-        if(head == null || index==0) {
+    public void insertIndex2(Integer index, Integer data) {
+        if (head == null || index == 0) {
             this.insertFirst(data);
         } else {
             Node node;
             node = head;
             Integer count;
             count = 0;
-            while(count != index - 1) {
+            while (count != index - 1) {
                 node = node.next;
                 count = count + 1;
             }
@@ -102,14 +103,28 @@ public class LinkedList {
         Integer tmp = null;
         if (head != null) {
             Node node = head;
-            head = node.next;
             tmp = node.data;
-            node.data = null;
-            node.next = null;
-            node = null;
+            head = node.next;
+//            node.data = null;
+//            node.next = null;
+            node = null; // GC에서 삭제?
+//            System.out.println(node.data);
+//            System.out.println(node.next);
+//            System.out.println(node);
         }
         return tmp;
     }
+
+    //todo 선생님
+    public void removeFirst2() {
+        if (head != null) {
+            Node secondNode;
+            secondNode = head.next;
+            head.next = null;
+            head = secondNode;
+        }
+    }
+
 
     public Integer removeLast() {
         Integer tmp = null;
@@ -118,9 +133,7 @@ public class LinkedList {
             while (true) {
                 if (node.next.next == null) {
                     tmp = node.next.data;
-                    node.next.data = null;
                     node.next = null;
-                    node = null;
                     break;
                 }
                 node = node.next;
@@ -129,28 +142,56 @@ public class LinkedList {
         return tmp;
     }
 
+    //todo 선생님
+    public void removeLast2() {
+        if (head != null) {
+            Node node;
+            node = head;
+            Node preNode;
+            preNode = null;
+            while (node.next != null) {
+                preNode = node;
+                node = node.next;
+            }
+            preNode.next = null;
+        }
+    }
 
     public Integer removeIndex(Integer index) {
-
         Integer tmp = null;
-        if (head != null) {
-            if (index == 0) removeFirst();
-            else {
-                Node node = head;
-                for (int i = 0; i < index - 1; i++) node = node.next;
-                Node node2 = node;
-                node = node.next;
-                node2.next = node.next;
-
-//                node2                          node.next
-//                node                             null
-//                node.next =node            node.next.next
-                tmp = node.data;
-                node.data = null;
-                node.next = null;
-                node = null;
-            }
+        if (index == 0) tmp = removeFirst();
+        else if (head != null) {
+            Node node = head;
+            for (int i = 0; i < index - 1; i++) node = node.next;
+            Node nodeTmp = node;
+            node = node.next;
+            nodeTmp.next = node.next;
+            tmp = node.data;
+            node.next =null;
         }
         return tmp;
     }
+
+    //todo 선생님
+    public void removeIndex2(Integer index) {
+        if (index == 0) {
+            removeFirst();
+        } else if (head != null) {
+            Node node;
+            node = head;
+            Integer count;
+            count = 0;
+            Node preNode;
+            preNode = null;
+            while (count != index) {
+                preNode = node;
+                node = node.next;
+                count = count + 1;
+            }
+            preNode.next = node.next;
+            node.next = null;
+        }
+    }
+
+
 }

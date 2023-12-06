@@ -16,5 +16,10 @@ public class BinarySearchTreeMain {
         test.print2D();
 
         TreePrinter.print(test.root);
+
+        test.preOrder();
+        test.inOrder();
+        test.PostOrner();
+
     }
 }

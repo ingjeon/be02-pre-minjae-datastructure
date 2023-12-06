@@ -1,6 +1,7 @@
 package recur;
 
 public final class EuclideanGCD2 {
+    //todo 선생님
     public static Integer gcd(Integer large, Integer small){
         if (large % small == 0) return small;
         else return gcd(small, large % small);

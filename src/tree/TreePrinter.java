@@ -3,7 +3,7 @@ package tree;
 import java.util.ArrayList;
 import java.util.List;
 
-//todo  출력 예시2
+//todo  출력 예시2  Node 클래스에서 인터페이스
 public class TreePrinter
 {
     /** Node that can be printed */

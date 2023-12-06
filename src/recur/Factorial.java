@@ -8,6 +8,7 @@ public class Factorial {
         }
         return result;
     }
+    // opr2 재귀
     public Integer opr2(Integer num) {
         if(num > 0) {
             return num * opr2(num - 1);

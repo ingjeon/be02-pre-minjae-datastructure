@@ -24,8 +24,13 @@ package recur;
  * 	 거쳐 "C"로 옮긴다.
  */
 public class HanoiTower {
-    int count = 0;
-    public Integer move(Integer num,Integer start,Integer end) {
+    Integer count;
+
+    public HanoiTower() {
+        this.count = 0;
+    }
+
+    public Integer move(Integer num, Integer start, Integer end) {
         if(num == 1) {
             System.out.println("원반["+num+"] : "+start+"번 기둥 => "+end+"번 기둥");
             count = count + 1;
