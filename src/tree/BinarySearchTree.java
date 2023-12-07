@@ -1,7 +1,7 @@
 package tree;
 
 public class BinarySearchTree {
-    static final int COUNT = 10;
+    static final int COUNT = 10; //display
     Node root;
 
 
@@ -9,9 +9,6 @@ public class BinarySearchTree {
         this.root = null;
     }
 
-//    public void display(BinarySearchTree node, int level) {
-//        if (node == null) return;
-//    }
 
     public void add(Integer data) {
         if (root == null) {
@@ -68,7 +65,7 @@ public class BinarySearchTree {
     public void preOrder () {
         System.out.print("전위 순회 : ");
         preOrder(root);
-        System.out.println("");
+        System.out.println();
     }
     public void preOrder (Node node) {
         if (node != null) {
@@ -86,7 +83,7 @@ public class BinarySearchTree {
     public void inOrder () {
         System.out.print("중위 순회 : ");
         inOrder(root);
-        System.out.println("");
+        System.out.println();
     }
     public void inOrder (Node node) {
         if (node != null) {
@@ -105,7 +102,7 @@ public class BinarySearchTree {
     public void PostOrner () {
         System.out.print("후위 순회 : ");
         PostOrner(root);
-        System.out.println("");
+        System.out.println();
     }
     public void PostOrner (Node node) {
         if (node != null) {
@@ -121,18 +118,75 @@ public class BinarySearchTree {
 
 
 
-    public void remove(Node node){
-        if(node.right == null && node.left ==null)
-            node =null;
-        else if(node.right==null)
-            remove(node.right);
-        else if(node.left==null)
-            remove(node.left);
-        else {}
+    public void remove(Integer input){
+        Node target = root;
+        Node parents = null;
 
+        // input 받은 값이 있는곳 탐색
+        if (target != null) {
+            while (true) {
+                if(target.data == input) {
+                    break;
+                }
+                if (input > target.data) {
+                    parents = target;
+                    target = target.right;
+                }
+                if (input < target.data) {
+                    parents = target;
+                    target = target.left;
+                }
+            }
+        }
+        // 타겟 밑 자식노드 2개 일때
+        if (target.left == null && target.right == null) {
+            if (target.data > parents.data) {
+                parents.right = null;
+            }
+            if (target.data < parents.data) {
+                parents.left = null;
+            }
+        }
+        // 타겟 밑 자식노드 1개 일때
+        else if (target.left != null && target.right == null
+                || target.left == null && target.right != null) {
+            if (target.data > parents.data) {
+                parents.right = target.right;
+                target.right = null;
+            }
+            if (target.data < parents.data) {
+                parents.left = target.left;
+                target.left = null;
+            }
+        } else {
+            // 	왼쪽을 기준으로 했을 때
+            //	삭제하는 노드 대신에 왼쪽 서브트리에서 가장 큰 노드로 대체
+            Node maximum = target.left;
+            Node maximumParents = target;
+            while (maximum.right != null) {
+                maximumParents = maximum;
+                maximum = maximum.right;
+            }
+            if (!maximumParents.equals(target)) {
+                maximumParents.right = maximum.left;
+            }
+
+            if (!target.left.equals(maximum)) {
+                maximum.left = target.left;
+            }
+            maximum.right = target.right;
+            if (parents == null) {
+                this.root = maximum;
+            } else {
+                if (target.data > parents.data) {
+                    parents.right = maximum;
+                }
+                if (target.data < parents.data) {
+                    parents.left = maximum;
+                }
+            }
+        }
     }
-
-
 
 
 

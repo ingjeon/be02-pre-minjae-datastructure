@@ -17,9 +17,15 @@ public class BinarySearchTreeMain {
 
         TreePrinter.print(test.root);
 
+        test.remove(30);
+        TreePrinter.print(test.root);
+
+
         test.preOrder();
         test.inOrder();
         test.PostOrner();
+
+
 
     }
 }
