@@ -5,25 +5,30 @@ import java.util.Arrays;
 public class TopDownMerge {
 
     public static int[] sorted;        // 정렬하면서 합칠 때 저장 보조 배열
-
-    public static void merge_sort(int[] arr) { // 정적 메소드 merge_sort
+    public static int c = 0;
+    public static void mergeSort(int[] arr) { // 정적 메소드 merge_sort
         // [8,2,6,4,7,3,9,5]
         sorted = new int[arr.length]; // 원본 길이만큼 배열
-        merge_sort(arr, 0, arr.length - 1); // 매개 변수 배열,이상,이하
+        System.out.println("***********************************");
+        System.out.println("### "+c+"회전 ###");
+        System.out.println("보조 배열 : " + Arrays.toString(sorted)); // 보조 배열 상태
+        System.out.println("원본 배열 : " + Arrays.toString(arr));
+        System.out.println("***********************************");
+        mergeSort(arr, 0, arr.length - 1); // 매개 변수 배열,이상,이하
     }
-
-    private static void merge_sort(int[] arr, int left, int right) {
+    private static void mergeSort(int[] arr, int left, int right) {
         // 부분리스트 원소 1개 면 쪼갤수 없음
         if (left == right) return; // void에서만 return;
         // break는 해당 반복문 종료, return은 해당 메소드가 호출된 곳 종료
         int mid = (left + right) / 2;    // 절반으로 나눌 위치
 
-        merge_sort(arr, left, mid);        // 왼쪽 부분리스트(left ~ mid)
-        merge_sort(arr, mid + 1, right);    // 오른쪽 부분리스트(mid+1 ~ right)
+        mergeSort(arr, left, mid);        // 왼쪽 부분리스트(left ~ mid)
+        mergeSort(arr, mid + 1, right);    // 오른쪽 부분리스트(mid+1 ~ right)
 
         merge(arr, left, mid, right);        // 병합 메소드
-        System.out.println("보조 배열 : " + Arrays.toString(sorted)); // 보조 배열 상태
-        System.out.println("원본 : " + Arrays.toString(arr)); // 배열 상태
+
+        System.out.println("원본 배열 : " + Arrays.toString(arr)); // 배열 상태
+        System.out.println("***********************************");
     }
 
     private static void merge(int[] arr, int left, int mid, int right) {
@@ -71,5 +76,9 @@ public class TopDownMerge {
         for (int i = left; i <= right; i++) {
             arr[i] = sorted[i];
         }
+        c++;
+        System.out.println("### "+c+"회전 ###");
+        System.out.println("보조 배열 : " + Arrays.toString(sorted)); // 보조 배열 상태
+        System.out.println("index : "+left+" ~ "+right+" 부분 병합 업데이트");
     }
 }

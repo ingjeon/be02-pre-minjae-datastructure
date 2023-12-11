@@ -94,13 +94,14 @@ public class Astar {
             int x = curX + move[i][0];
             int y = curY + move[i][1];
             if (0 <= y && y < map.length && 0 <= x &&
-                    x < map[0].length && map[x][y] != 3) {
+                    x < map[0].length ){
+                if ( map[x][y] != 3) {
                 // FGH 계산해서 각각 변수에 저장
                 int G;
                 if (x == curX || y == curY) {
                     G = currentNode.g + DISTANCE_COST;
                 } else G = currentNode.g + DISTANCE_DIAGONAL_COST;
-                int H = (Math.abs(goal.x - curX) + Math.abs(goal.y - curY)) * 10;
+                int H = (int) Math.sqrt( Math.pow(goal.x - curX,2) + Math.pow(goal.y - curY,2));
                 int F = H + G;
                 // 새로운 노드 생성(전달해줄거 전달해서 생성)
                 Node adjacentNode = new Node(x, y);
@@ -138,7 +139,7 @@ public class Astar {
 //                        }
 //                    }
                 }
-            }
+            }}
         }
     }
 
