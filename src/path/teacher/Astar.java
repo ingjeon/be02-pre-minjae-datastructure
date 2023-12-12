@@ -137,7 +137,7 @@ public class Astar {
 
                 // FGH 계산해서 각각 변수에 저장
                 Integer h;
-                h = Math.abs(goal.x - xArr[i]) + Math.abs(goal.y - yArr[i]);
+                h = (int) Math.sqrt( Math.pow(goal.x - xArr[i],2) + Math.pow(goal.y - yArr[i],2));
 
                 Integer g;
                 if (i < 4) {
