@@ -1,4 +1,4 @@
-package path;
+package path.astar;
 
 import java.util.ArrayList;
 import java.util.List;

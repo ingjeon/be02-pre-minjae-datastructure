@@ -1,4 +1,4 @@
-package path.teacher;
+package path.teacher.astar;
 
 import java.util.*;
 

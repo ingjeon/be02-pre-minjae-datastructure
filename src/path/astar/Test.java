@@ -1,4 +1,4 @@
-package path;
+package path.astar;
 
 public class Test {
     public static void main(String[] args) {

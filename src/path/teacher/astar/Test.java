@@ -1,4 +1,4 @@
-package path.teacher;
+package path.teacher.astar;
 
 public class Test {
     public static void main(String[] args) {

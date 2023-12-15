@@ -1,4 +1,4 @@
-package path;
+package path.astar;
 
 public class Node {
 
